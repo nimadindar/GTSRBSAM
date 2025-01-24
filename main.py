@@ -5,13 +5,13 @@ from Classifier.train_classifier import train_model_normal, train_model_sam, eva
 autoencoder_num_epochs = 100
 autoencoder_lr = 0.001
 
-classifier_num_epochs = 1
+classifier_num_epochs = 20
 classifier_lr = 0.001
 sam_classifier_lr = 0.001
 
 train_autoencoder = True
 
-classifier_optim_mode = "normal" # "normal"  normal mode uses Adam optimizer 
+classifier_optim_mode = "sam" # "normal"  normal mode uses Adam optimizer 
 
 if train_autoencoder:
     print("This is pre-training step for autoencoder... the encoder weights will be utilized in Classifier...\n")
