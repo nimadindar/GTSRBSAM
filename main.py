@@ -9,7 +9,7 @@ classifier_num_epochs = 1
 classifier_lr = 0.001
 sam_classifier_lr = 0.001
 
-train_autoencoder = False
+train_autoencoder = True
 
 classifier_optim_mode = "normal" # "normal"  normal mode uses Adam optimizer 
 
