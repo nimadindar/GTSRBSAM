@@ -4,7 +4,6 @@ from SAM.SAM import SAM
 
 import torch
 import torch.nn as nn
-import torch.optim as optim
 from torch.utils.data import DataLoader
 
 from tqdm import tqdm
@@ -87,13 +86,12 @@ def train_model_sam(lr, num_epochs):
             outputs = model(image)
             loss = criterion(outputs, label)
             epoch_loss += loss.item()
-            batch_loss_history.append(loss.item())  # Save batch loss
+            batch_loss_history.append(loss.item()) 
 
             _, predicted = torch.max(outputs, 1)
             correct += (predicted == label).sum().item()
             total += label.size(0)
 
-            # Save batch accuracy
             batch_accuracy = 100 * (predicted == label).sum().item() / label.size(0)
             batch_accuracy_history.append(batch_accuracy)
 
@@ -121,7 +119,6 @@ def train_model_normal(lr, num_epochs):
     train_split, _ = get_data_split()
     train_loader = DataLoader(train_split, batch_size=32, shuffle=True)
 
-    # Initialize lists to store batch-wise loss and accuracy
     batch_loss_history = []
     batch_accuracy_history = []
 
@@ -143,13 +140,12 @@ def train_model_normal(lr, num_epochs):
             optimizer.step()
 
             epoch_loss += loss.item()
-            batch_loss_history.append(loss.item())  # Save batch loss
+            batch_loss_history.append(loss.item())  
 
             _, predicted = torch.max(outputs, 1)
             correct += (predicted == label).sum().item()
             total += label.size(0)
 
-            # Save batch accuracy
             batch_accuracy = 100 * (predicted == label).sum().item() / label.size(0)
             batch_accuracy_history.append(batch_accuracy)
 
@@ -158,7 +154,6 @@ def train_model_normal(lr, num_epochs):
     
     torch.save(model, "weights/classifier_weights_normal.pth")
 
-    # Optionally, save metrics for visualization
     metrics = {
         "batch_loss": batch_loss_history,
         "batch_accuracy": batch_accuracy_history,
